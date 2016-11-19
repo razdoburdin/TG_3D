@@ -111,6 +111,7 @@ By setting G_OUTPUT key to "full" additional information can be added to the out
 + [23] Ew(t=0)
 + [24] Ew(t=Topt)
 + [25] Number of curent singular value
+
 Here F(kz, t) is a square of Fourier-amplitude of wave-number kz divided by sum of squares of all Fourier-amplitudes in the decomposition at time t,
 kz_max(t) is wave-number corresponding to maximal F at time t,
 E{x,y,z,w}(t) is energy component associated with {vx, vy, vz, w} in units of full energy of perturbation.
