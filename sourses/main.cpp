@@ -37,15 +37,5 @@ int main(int N_data, char** char_data)
 	double kx_max=-24*data.ky;
 	G_kx(data,bg,kx_min,kx_max,0.5*data.ky);
 
-//4. Calculating G_max by using analytical expression for T_max.
-//	double Re_05=2000;
-//	data.Topt=pow(Re_05,1.0/3.0)*pow(data.ky*0.5,-2.0/3.0)/data.q;
-//	data.kx=-data.ky*data.q*data.Topt;
-//	fprintf(stderr,"Topt=%.2lf\tkx=%.2lf\tbeta=%.1lf\n",data.Topt,data.kx,data.kx/data.ky);
-
-//5. Calculating maximal G over all kx.
-//	G_T G(data, bg);
-//	G.write(data,bg);
-
 	return 0;
 }

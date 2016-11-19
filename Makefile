@@ -90,3 +90,9 @@ profiling : TG_3D $(CONF_DIR)/params.conf
 #	valgrind --leak-check=yes --track-origins=yes ./TG_3D $(KEYS)
 #	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -v ./TG_3D $(KEYS)
 	valgrind --tool=callgrind ./TG_3D $(KEYS)
+
+gitaddall :
+	git add sourses
+	git add configs
+	git add Makefile
+	git add README
