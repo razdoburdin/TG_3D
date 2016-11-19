@@ -64,24 +64,37 @@ LOG_OUTPUT={stderr, TG_3D.log}
 
 ###Numerical parameters (configs/params.conf)
 --n          <double>     Polytropic index                                                         Required: no     Default: 1.5
+
 --kx        <double>     Wave-number in x direction                                     Required: no     Default: 0
+
 --ky        <double>     Wave-number in y direction                                     Required: yes
+
 --Topt    <double>    Optimisation time                                                       Required: no     Default: 1
+
 --dz        <double>    Step of discretization                                                 Required: yes
+
 --C         <double>     Constant for CFL condition                                       Required: yes
+
 --Lz        <double>        Half-thickness of the isothermal flow                 Required: no     Default: 1
+
 --q          <double>     Shear rate                                                                    Required: no     Default: 1.5
+
 --mu      <double>        Position of initial condition                                    Required: no     Default: 0.2
+
 --sigma  <double>    Size of initial condition                                               Required: no     Default: 0.1
+
 --cores   <int>            Number of openmp threads (0 --- all avalible)      Required: no     Default: 0
+
 --cond1  <double>     First conditions of iterations interruption              Required: no     Default -5
+
 --cond2  <double>     Second conditions of iterations interruption         Required: no     Default -6
+
 --cond4  <int>            Fourth conditions of iterations interruption          Required: no     Default 500
 
 ##Output format
 The transient amplification factor is recorded in file "G_$BACKGROUND_$METRIC_$BOUNDARY" in the following format (one lines for one calculation):
-    1 Wave-number in x direction
-    2 Wave-number in y direction
+    [1] Wave-number in x direction
+    [2] Wave-number in y direction
     [3] Shear rate
     [4] Polytropic index
     [5] Step of discretization
