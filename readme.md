@@ -66,21 +66,21 @@ LOG_OUTPUT={stderr, TG_3D.log}
 ###Numerical parameters (configs/params.conf)
 For setting numerical parametrs the follwing keys can be used:
 + Required parameters:
-  + --ky, <double>, *Wave-number in y direction*
-  + --dz, <double>, *Step of discretization*
-  + --C, <double>, *Constant for CFL condition*
+  + --ky, **double**, *Wave-number in y direction*
+  + --dz, **double**, *Step of discretization*
+  + --C, **double**, *Constant for CFL condition*
 + Not required parameters:
-  + --n, <double>, *Polytropic index*, default: 1.5
-  + --kx, <double>, *Wave-number in x direction*, default: 0
-  + --Topt, <double>, *Optimisation time*, default: 1
-  + --Lz, <double>, *Half-thickness of the isothermal flow*, , default: 1
-  + --q, <double>, *Shear rate*, default: 1.5
-  + --mu, <double>, *Position of initial condition*, default: 0.2
-  + --sigma, <double>, *Size of initial condition*, default: 0.1
-  + --cores, <int>, *Number of openmp threads (0 --- all avalible)*, default: 0
-  + --cond1, <double>, *First conditions of iterations interruption*, default -5
-  + --cond2, <double>, *Second conditions of iterations interruption*, default -6
-  + --cond4, <int>, *Fourth conditions of iterations interruption*, default 500
+  + --n, **double**, *Polytropic index*, default: 1.5
+  + --kx, **double**, *Wave-number in x direction*, default: 0
+  + --Topt, **double**, *Optimisation time*, default: 1
+  + --Lz, **double**, *Half-thickness of the isothermal flow*, , default: 1
+  + --q, **double**, *Shear rate*, default: 1.5
+  + --mu, **double**, *Position of initial condition*, default: 0.2
+  + --sigma, **double**, *Size of initial condition*, default: 0.1
+  + --cores, **int**, *Number of openmp threads (0 --- all avalible)*, default: 0
+  + --cond1, **double**, *First conditions of iterations interruption*, default -5
+  + --cond2, **double**, *Second conditions of iterations interruption*, default -6
+  + --cond4, **int**, *Fourth conditions of iterations interruption*, default 500
 
 ##Output format
 The transient amplification factor is recorded in file "G_$BACKGROUND_$METRIC_$BOUNDARY" in the following format (one lines for one calculation):
@@ -130,12 +130,12 @@ Format of output:
 To determine moment to interruption of iterations it is naturally to use determination of singular vector:
 A^{\dag} A q = \sigma^2 q.
 That leads to the first condition:
-||A^{\dag} A q -\sigma^2 q||^2 / sigma^2 < 10^{cond1}
+||A^{\dag} A q -\sigma^2 q||^2 / sigma^2 ** 10^{cond1}
 
 Unfortunately sometimes first condition cannot be met with fixed dz and C due to numerical errors of integration.
 Thats way it can be useful to use another criterions.
 The second criterion interrupts iterations than changing of value X=||A^{\dag} A q -\sigma^2 q||^2 / sigma^2 become to slow:
-(X_{i-1}-X{i})/X_{i-1}<10^{cond2}
+(X_{i-1}-X{i})/X_{i-1}**10^{cond2}
 The third one interrupts iterations when growth factor start decreasing.
 And the fourth criterion interrupts iterations after cond4 iterations.
 You can disable any of last three criterion in the link_keys.conf.
