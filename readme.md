@@ -84,33 +84,33 @@ For setting numerical parametrs the follwing keys can be used:
 
 ##Output format
 The transient amplification factor is recorded in file "G_$BACKGROUND_$METRIC_$BOUNDARY" in the following format (one lines for one calculation):
-    [1] Wave-number in x direction
-    [2] Wave-number in y direction
-    [3] Shear rate
-    [4] Polytropic index
-    [5] Step of discretization
-    [6] Constant for CFL condition
-    [7] Optimisation time
-    [8] Amplification factor
-    [9] First conditions of iterations interruption
-    [10] Condition that interrupted iterations during this calculations {1,2,3,4}.
++ [1] Wave-number in x direction
++ [2] Wave-number in y direction
++ [3] Shear rate
++ [4] Polytropic index
++ [5] Step of discretization
++ [6] Constant for CFL condition
++ [7] Optimisation time
++ [8] Amplification factor
++ [9] First conditions of iterations interruption
++ [10] Condition that interrupted iterations during this calculations {1,2,3,4}.
 
 By setting G_OUTPUT key to "full" additional information can be added to the output:
-    [11] F(kz=0, t=0)
-    [12] F(kz=0, t=Topt)
-    [13] kz_max(t=0)
-    [14] kz_max(t=Topt)
-    [15] F(kz_max(t=0), t=0)
-    [16] F(kz_max(t=Topt), t=Topt)
-    [17] Ex(t=0)
-    [18]    Ex(t=Topt)
-    [19] Ey(t=0)
-    [20] Ey(t=Topt)
-    [21] Ez(t=0)
-    [22] Ez(t=Topt)
-    [23] Ew(t=0)
-    [24] Ew(t=Topt)
-    [25] Number of curent singular value
++ [11] F(kz=0, t=0)
++ [12] F(kz=0, t=Topt)
++ [13] kz_max(t=0)
++ [14] kz_max(t=Topt)
++ [15] F(kz_max(t=0), t=0)
++ [16] F(kz_max(t=Topt), t=Topt)
++ [17] Ex(t=0)
++ [18]    Ex(t=Topt)
++ [19] Ey(t=0)
++ [20] Ey(t=Topt)
++ [21] Ez(t=0)
++ [22] Ez(t=Topt)
++ [23] Ew(t=0)
++ [24] Ew(t=Topt)
++ [25] Number of curent singular value
 Here F(kz, t) is a square of Fourier-amplitude of wave-number kz divided by sum of squares of all Fourier-amplitudes in the decomposition at time t,
 kz_max(t) is wave-number corresponding to maximal F at time t,
 E{x,y,z,w}(t) is energy component associated with {vx, vy, vz, w} in units of full energy of perturbation.
