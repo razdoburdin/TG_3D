@@ -63,34 +63,20 @@ G_OUTPUT={short, full}
 LOG_OUTPUT={stderr, TG_3D.log}
 
 ###Numerical parameters (configs/params.conf)
-	--n      |    <double>   |  Polytropic index                         |                            Required: no   |  Default: 1.5
-___
-	--kx			<double> 		Wave-number in x direction									Required: no 		Default: 0
-___
-	--ky			<double> 		Wave-number in y direction 									Required: yes
-___
-	--Topt 	<double>		Optimisation time													Required: no 		Default: 1
-___
-	--dz			<double>		Step of discretization												Required: yes
-___
-	--C			<double> 		Constant for CFL condition 									Required: yes
-___
-	--Lz			<double>		Half-thickness of the isothermal flow 					Required: no		Default: 1
-___
-	--q 			<double> 		Shear rate																	Required: no		Default: 1.5
-___
+	--n       |    <double>   |  Polytropic index                         |                            Required: no   |  Default: 1.5
+	--kx     |    <double> 		Wave-number in x direction									Required: no 		Default: 0
+	--ky     |    <double> 		Wave-number in y direction 									Required: yes
+	--Topt |   <double>		Optimisation time													Required: no 		Default: 1
+	--dz     |  <double>		Step of discretization												Required: yes
+	--C       | <double> 		Constant for CFL condition 									Required: yes
+	--Lz	     | <double>		Half-thickness of the isothermal flow 					Required: no		Default: 1
+	--q        | <double> 		Shear rate																	Required: no		Default: 1.5
 	--mu		<double>		Position of initial condition									Required: no		Default: 0.2
-___
 	--sigma	<double>		Size of initial condition											Required: no		Default: 0.1
-___
 	--cores	<int>				Number of openmp threads (0 --- all avalible)	Required: no		Default: 0
-___
 	--cond1	<double> 		First conditions of iterations interruption 			Required: no		Default -5
-___
 	--cond2	<double> 		Second conditions of iterations interruption 		Required: no		Default -6
-___
 	--cond4	<int>				Fourth conditions of iterations interruption 		Required: no		Default 500
-___
 
 ##Output format
 The transient amplification factor is recorded in file "G_$BACKGROUND_$METRIC_$BOUNDARY" in the following format (one lines for one calculation):
