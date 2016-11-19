@@ -56,7 +56,7 @@ VECTORIZE={yes, no}
 SIGNAL2={yes, no}
 SIGNAL3={yes, no}
 SIGNAL4={yes, no}
-+ Check equality of (Aq, Aq)=(A^{\dag}Aq, q) after every iteration (may spend a lot of time)
++ Check equality of (Aq, Aq)=(A^{\dag}Aq, q) after every iteration (maybe time consuming)
 TEST_OF_CONJUGATION={yes, no}
 + Output of short or full information at the file:
 G_OUTPUT={short, full}
