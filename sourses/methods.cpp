@@ -680,9 +680,11 @@ optimal::optimal(parameters data, background bg, optimal* singular_vectors, int 
 #if defined(LOGFILENAME)
 		fclose(LOG);
 #endif
-
 		i++;
 	}
+#if defined(LOGFILENAME)
+	LOG=fopen(STRINGIZE(LOGFILENAME),"a+t");
+#endif
 	Kz_0=kz_calc(data);
 	kz_max_calc(data,&kz_max_0,&F_kz_max_0);
 	norm_components_calc(data,bg,&Ex_0,&Ey_0,&Ez_0,&Ew_0);
@@ -693,6 +695,9 @@ optimal::optimal(parameters data, background bg, optimal* singular_vectors, int 
 	i=evolve(data,bg,0,0);
 	normalisation(data,bg);
 	fprintf(LOG,"Convergence. End code: %d\n",end_code);
+#if defined(LOGFILENAME)
+		fclose(LOG);
+#endif
 }
 
 void optimal::singular_vectors_subtraction(parameters data,background bg,optimal* singular_vectors, int N)
