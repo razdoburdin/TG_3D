@@ -2,10 +2,10 @@
 See paper #PAPER for details
 
 ##Project structure:
-configs/																	Configuration files:
-			compile_keys.conf									Contain compilation parameters
-			link_keys.conf											Contain non-numerical parameters of calculation
-			params.conf												Contain numerical parameters of calculation
++ configs/	| Configuration files:
+  +	compile_keys.conf |	Contain compilation parameters
+  + link_keys.conf	 | Contain non-numerical parameters of calculation
+  + params.conf | Contain numerical parameters of calculation
 
 sourses/																	Sourses files:
 			main.cpp													The main project file (uncoment one of five code blocks).
@@ -29,11 +29,13 @@ README																This file
 
 ##Compilation
 To compile project run 'make' in terminal.
+
 You need to have the following:
-c++ compiler														Note that code was tested only for gcc.
-make
-gnu scientific library (gsl)
-argtable
++ c++ compiler
++ make
++ gnu scientific library (gsl)
++ argtable
+(Note that code was tested only for gcc)
 
 ##Runing the code
 To start calculations run 'make task' in terminal.
