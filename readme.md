@@ -1,7 +1,7 @@
-h1 Numerical code for calculations of transient growth of linear perturbations in 3D shearing box by power iterations.
+# Numerical code for calculations of transient growth of linear perturbations in 3D shearing box by power iterations.
 See paper #PAPER for details
 
-Project structure:
+##Project structure:
 configs/																	Configuration files:
 			compile_keys.conf									Contain compilation parameters
 			link_keys.conf											Contain non-numerical parameters of calculation
@@ -27,7 +27,7 @@ sourses/																	Sourses files:
 Makefile																	Makefile
 README																This file
 
-Compilation
+##Compilation
 To compile project run 'make' in terminal.
 You need to have the following:
 c++ compiler														Note that code was tested only for gcc.
@@ -35,10 +35,11 @@ make
 gnu scientific library (gsl)
 argtable
 
-Runing the code
+##Runing the code
 To start calculations run 'make task' in terminal.
 
-Non-numerical parameters (configs/link_keys.conf)
+##Configuration
+###Non-numerical parameters (configs/link_keys.conf)
 Choosing of the background flow:
 BACKGROUND={homogeneous, polytropic, isothermal}
 
@@ -66,7 +67,7 @@ G_OUTPUT={short, full}
 Write iterations log at the screen or save it into log file:
 LOG_OUTPUT={stderr, TG_3D.log}
 
-Numerical parameters (configs/params.conf)
+###Numerical parameters (configs/params.conf)
 	-n 			<double>		Polytropic index														Required: no		Default: 1.5
 	--kx			<double> 		Wave-number in x direction									Required: no 		Default: 0
 	--ky			<double> 		Wave-number in y direction 									Required: yes
@@ -82,7 +83,7 @@ Numerical parameters (configs/params.conf)
 	--cond2	<double> 		Second conditions of iterations interruption 		Required: no		Default -6
 	--cond4	<int>				Fourth conditions of iterations interruption 		Required: no		Default 500
 
-Output format
+##Output format
 The transient amplification factor is recorded in file "G_$BACKGROUND_$METRIC_$BOUNDARY" in the following format (one lines for one calculation):
 	[1] Wave-number in x direction
 	[2] Wave-number in y direction
@@ -126,7 +127,7 @@ Format of output:
 	[6] energy density associated with v_x, v_y and v_z
 	[7] energy density associated with w
 
-Conditions of iterations interruption:
+##Conditions of iterations interruption:
 To determine moment to interruption of iterations it is naturally to use determination of singular vector:
 A^{\dag} A q = \sigma^2 q.
 That leads to the first condition:
