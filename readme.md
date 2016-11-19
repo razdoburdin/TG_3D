@@ -2,30 +2,30 @@
 See paper #PAPER for details
 
 ##Project structure:
-+ configs/	                                                             	*Configuration files:*
-  +	compile_keys.conf                                         	*Contain compilation parameters.*
-  + link_keys.conf	                                                 	*Contain non-numerical parameters of calculation.*
-  + params.conf                                                	 	*Contain numerical parameters of calculation.*
++ configs/                                                                     *Configuration files:*
+  +    compile_keys.conf                                             *Contain compilation parameters.*
+  + link_keys.conf                                                         *Contain non-numerical parameters of calculation.*
+  + params.conf                                                         *Contain numerical parameters of calculation.*
 
-+ sourses/                                                              	*Sourses files:*
-  + main.cpp                                                           	*The main project file (uncoment one of five code blocks).*
-  + classes.h                                                           	*Header file with classes description.*
-  + methods.cpp                                                    	*Class methods which are common for all boundary conditions and metric type.*
-  + methods_3D.cpp                                             	*Class methods for metric coincident with  acoustic energy of perturbations.*
-  + methods_first.cpp                                           	*Class methods for boundary conditions of first type.*
-  + methods_second.cpp                                      	*Class methods for boundary conditions of second type.*
-  + methods_infinite.cpp	                                     	*Class methods for infinite flows.*
-  + methods_periodic.cpp                                    	*Class methods for periodic boundary conditions.*
-  + functions.cpp                                                   	*Functions which are common for all flow types.*
-  + functions_homogeneous.cpp                        	*Functions for homogeneous flow.*
-  + functions_isothermal.cpp                              	*Functions for isothermal flow.*
-  + functions_polytropic.cpp                               	*Functions for politropic flow.*
-  + functions.h                                                       	*Common header for all functions*.cpp files.*
-  + procedures.cpp                                                	*Some procedures for main.cpp*
-  + procedures.h                                                    	*Header for procedures.cpp*
++ sourses/                                                                  *Sourses files:*
+  + main.cpp                                                               *The main project file (uncoment one of five code blocks).*
+  + classes.h                                                               *Header file with classes description.*
+  + methods.cpp                                                        *Class methods which are common for all boundary conditions and metric type.*
+  + methods_3D.cpp                                                 *Class methods for metric coincident with  acoustic energy of perturbations.*
+  + methods_first.cpp                                               *Class methods for boundary conditions of first type.*
+  + methods_second.cpp                                          *Class methods for boundary conditions of second type.*
+  + methods_infinite.cpp                                             *Class methods for infinite flows.*
+  + methods_periodic.cpp                                        *Class methods for periodic boundary conditions.*
+  + functions.cpp                                                       *Functions which are common for all flow types.*
+  + functions_homogeneous.cpp                            *Functions for homogeneous flow.*
+  + functions_isothermal.cpp                                  *Functions for isothermal flow.*
+  + functions_polytropic.cpp                                   *Functions for politropic flow.*
+  + functions.h                                                           *Common header for all functions*.cpp files.*
+  + procedures.cpp                                                    *Some procedures for main.cpp*
+  + procedures.h                                                        *Header for procedures.cpp*
 
-+ Makefile                                                              	*Makefile*
-+ README                                                              	*This file*
++ Makefile                                                                  *Makefile*
++ README                                                                  *This file*
 
 ##Compilation
 To compile project run 'make' in terminal.
@@ -63,50 +63,50 @@ G_OUTPUT={short, full}
 LOG_OUTPUT={stderr, TG_3D.log}
 
 ###Numerical parameters (configs/params.conf)
-	--n       |    <double>   |  Polytropic index                         |                            Required: no   |  Default: 1.5
-	--kx     |    <double> 		Wave-number in x direction									Required: no 		Default: 0
-	--ky     |    <double> 		Wave-number in y direction 									Required: yes
-	--Topt |   <double>		Optimisation time													Required: no 		Default: 1
-	--dz     |  <double>		Step of discretization												Required: yes
-	--C       | <double> 		Constant for CFL condition 									Required: yes
-	--Lz	     | <double>		Half-thickness of the isothermal flow 					Required: no		Default: 1
-	--q        | <double> 		Shear rate																	Required: no		Default: 1.5
-	--mu		<double>		Position of initial condition									Required: no		Default: 0.2
-	--sigma	<double>		Size of initial condition											Required: no		Default: 0.1
-	--cores	<int>				Number of openmp threads (0 --- all avalible)	Required: no		Default: 0
-	--cond1	<double> 		First conditions of iterations interruption 			Required: no		Default -5
-	--cond2	<double> 		Second conditions of iterations interruption 		Required: no		Default -6
-	--cond4	<int>				Fourth conditions of iterations interruption 		Required: no		Default 500
+--n          <double>     Polytropic index                                                         Required: no     Default: 1.5
+--kx        <double>     Wave-number in x direction                                     Required: no     Default: 0
+--ky        <double>     Wave-number in y direction                                     Required: yes
+--Topt    <double>    Optimisation time                                                       Required: no     Default: 1
+--dz        <double>    Step of discretization                                                 Required: yes
+--C         <double>     Constant for CFL condition                                       Required: yes
+--Lz        <double>        Half-thickness of the isothermal flow                 Required: no     Default: 1
+--q          <double>     Shear rate                                                                    Required: no     Default: 1.5
+--mu      <double>        Position of initial condition                                    Required: no     Default: 0.2
+--sigma  <double>    Size of initial condition                                               Required: no     Default: 0.1
+--cores   <int>            Number of openmp threads (0 --- all avalible)      Required: no     Default: 0
+--cond1  <double>     First conditions of iterations interruption              Required: no     Default -5
+--cond2  <double>     Second conditions of iterations interruption         Required: no     Default -6
+--cond4  <int>            Fourth conditions of iterations interruption          Required: no     Default 500
 
 ##Output format
 The transient amplification factor is recorded in file "G_$BACKGROUND_$METRIC_$BOUNDARY" in the following format (one lines for one calculation):
-	[1] Wave-number in x direction
-	[2] Wave-number in y direction
-	[3] Shear rate
-	[4] Polytropic index
-	[5] Step of discretization
-	[6] Constant for CFL condition
-	[7] Optimisation time
-	[8] Amplification factor
-	[9] First conditions of iterations interruption
-	[10] Condition that interrupted iterations during this calculations {1,2,3,4}.
+    1 Wave-number in x direction
+    2 Wave-number in y direction
+    [3] Shear rate
+    [4] Polytropic index
+    [5] Step of discretization
+    [6] Constant for CFL condition
+    [7] Optimisation time
+    [8] Amplification factor
+    [9] First conditions of iterations interruption
+    [10] Condition that interrupted iterations during this calculations {1,2,3,4}.
 
 By setting G_OUTPUT key to "full" additional information can be added to the output:
-	[11] F(kz=0, t=0)
-	[12] F(kz=0, t=Topt)
-	[13] kz_max(t=0)
-	[14] kz_max(t=Topt)
-	[15] F(kz_max(t=0), t=0)
-	[16] F(kz_max(t=Topt), t=Topt)
-	[17] Ex(t=0)
-	[18]	Ex(t=Topt)
-	[19] Ey(t=0)
-	[20] Ey(t=Topt)
-	[21] Ez(t=0)
-	[22] Ez(t=Topt)
-	[23] Ew(t=0)
-	[24] Ew(t=Topt)
-	[25] Number of curent singular value
+    [11] F(kz=0, t=0)
+    [12] F(kz=0, t=Topt)
+    [13] kz_max(t=0)
+    [14] kz_max(t=Topt)
+    [15] F(kz_max(t=0), t=0)
+    [16] F(kz_max(t=Topt), t=Topt)
+    [17] Ex(t=0)
+    [18]    Ex(t=Topt)
+    [19] Ey(t=0)
+    [20] Ey(t=Topt)
+    [21] Ez(t=0)
+    [22] Ez(t=Topt)
+    [23] Ew(t=0)
+    [24] Ew(t=Topt)
+    [25] Number of curent singular value
 Here F(kz, t) is a square of Fourier-amplitude of wave-number kz divided by sum of squares of all Fourier-amplitudes in the decomposition at time t,
 kz_max(t) is wave-number corresponding to maximal F at time t,
 E{x,y,z,w}(t) is energy component associated with {vx, vy, vz, w} in units of full energy of perturbation.
@@ -114,13 +114,13 @@ E{x,y,z,w}(t) is energy component associated with {vx, vy, vz, w} in units of fu
 It is also possible to record perturbation profiles by using method "write" for classes "perturbation" and "optimal".
 It records perturabtion in folder "result", file name format "q=%.3lf kx=%.2lf ky=%.2lf t=%.2lf".
 Format of output:
-	[1] coordinate
-	[2] v_x
-	[3] v_y
-	[4] v_z
-	[5] w
-	[6] energy density associated with v_x, v_y and v_z
-	[7] energy density associated with w
+    [1] coordinate
+    [2] v_x
+    [3] v_y
+    [4] v_z
+    [5] w
+    [6] energy density associated with v_x, v_y and v_z
+    [7] energy density associated with w
 
 ##Conditions of iterations interruption:
 To determine moment to interruption of iterations it is naturally to use determination of singular vector:
