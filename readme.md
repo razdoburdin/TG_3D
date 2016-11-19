@@ -1,4 +1,4 @@
-Numerical code for calculations of transient growth in 3D shearing-box by power iterations.
+h1 Numerical code for calculations of transient growth of linear perturbations in 3D shearing box by power iterations.
 See paper #PAPER for details
 
 Project structure:
