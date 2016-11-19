@@ -40,24 +40,24 @@ To start calculations run 'make task' in terminal.
 
 ##Configuration
 ###Non-numerical parameters (configs/link_keys.conf)
-+Choosing of the background flow:
++ Choosing of the background flow:
 BACKGROUND={homogeneous, polytropic, isothermal}
-+Choosing of the metric type (now only one type is avaliable)
++ Choosing of the metric type (now only one type is avaliable)
 METRIC=3D
-+Choosing of the boundary conditions:
++ Choosing of the boundary conditions:
 BOUNDARY={first, second, periodic}
 Boundary conditions of first type mean that W=0 at the boundaries, second --- dW/dz=0
-+Using vectorisation in parallel regions of the code (gcc >=4.9 is required)
++ Using vectorisation in parallel regions of the code (gcc >=4.9 is required)
 VECTORIZE={yes, no}
-+Using additional conditions of iterations interruption (see paragraph "Conditions of iterations interruption" for details):
++ Using additional conditions of iterations interruption (see paragraph "Conditions of iterations interruption" for details):
 SIGNAL2={yes, no}
 SIGNAL3={yes, no}
 SIGNAL4={yes, no}
-+Check equality of (Aq, Aq)=(A^{\dag}Aq, q) after every iteration (may spend a lot of time)
++ Check equality of (Aq, Aq)=(A^{\dag}Aq, q) after every iteration (may spend a lot of time)
 TEST_OF_CONJUGATION={yes, no}
-+Output of short or full information at the file:
++ Output of short or full information at the file:
 G_OUTPUT={short, full}
-+Write iterations log at the screen or save it into log file:
++ Write iterations log at the screen or save it into log file:
 LOG_OUTPUT={stderr, TG_3D.log}
 
 ###Numerical parameters (configs/params.conf)
