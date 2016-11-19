@@ -35,6 +35,7 @@ You need to have the following:
 + make
 + gnu scientific library (gsl)
 + argtable
+
 (Note that code was tested only for gcc)
 
 ##Runing the code
@@ -63,33 +64,23 @@ G_OUTPUT={short, full}
 LOG_OUTPUT={stderr, TG_3D.log}
 
 ###Numerical parameters (configs/params.conf)
---n        |  <double>  |   Polytropic index                                                         Required: no     Default: 1.5
-
---kx      |  <double>  |   Wave-number in x direction                                     Required: no     Default: 0
-
---ky      |  <double>  |   Wave-number in y direction                                     Required: yes
-
---Topt  |  <double>  |  Optimisation time                                                       Required: no     Default: 1
-
---dz      |  <double>  |  Step of discretization                                                 Required: yes
-
---C       |  <double>  |   Constant for CFL condition                                       Required: yes
-
---Lz      |  <double>  |      Half-thickness of the isothermal flow                 Required: no     Default: 1
-
---q        |  <double>  |   Shear rate                                                                    Required: no     Default: 1.5
-
---mu    |  <double>  |      Position of initial condition                                    Required: no     Default: 0.2
-
---sigma|  <double>  |  Size of initial condition                                               Required: no     Default: 0.1
-
---cores |  <int>  |          Number of openmp threads (0 --- all avalible)      Required: no     Default: 0
-
---cond1 | <double>  |   First conditions of iterations interruption              Required: no     Default -5
-
---cond2 | <double>  |   Second conditions of iterations interruption         Required: no     Default -6
-
---cond4 | <int>  |          Fourth conditions of iterations interruption          Required: no     Default 500
+For setting numerical parametrs the follwing keys can be used:
++ Required parameters:
+  + --ky, <double>, *Wave-number in y direction*
+  + --dz, <double>, *Step of discretization*
+  + --C, <double>, *Constant for CFL condition*
++ Not required parameters:
+  + --n, <double>, *Polytropic index*, default: 1.5
+  + --kx, <double>, *Wave-number in x direction*, default: 0
+  + --Topt, <double>, *Optimisation time*, default: 1
+  + --Lz, <double>, *Half-thickness of the isothermal flow*, , default: 1
+  + --q, <double>, *Shear rate*, default: 1.5
+  + --mu, <double>, *Position of initial condition*, default: 0.2
+  + --sigma, <double>, *Size of initial condition*, default: 0.1
+  + --cores, <int>, *Number of openmp threads (0 --- all avalible)*, default: 0
+  + --cond1, <double>, *First conditions of iterations interruption*, default -5
+  + --cond2, <double>, *Second conditions of iterations interruption*, default -6
+  + --cond4, <int>, *Fourth conditions of iterations interruption*, default 500
 
 ##Output format
 The transient amplification factor is recorded in file "G_$BACKGROUND_$METRIC_$BOUNDARY" in the following format (one lines for one calculation):
