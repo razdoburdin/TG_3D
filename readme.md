@@ -118,13 +118,13 @@ E{x,y,z,w}(t) is energy component associated with {vx, vy, vz, w} in units of fu
 It is also possible to record perturbation profiles by using method "write" for classes "perturbation" and "optimal".
 It records perturabtion in folder "result", file name format "q=%.3lf kx=%.2lf ky=%.2lf t=%.2lf".
 Format of output:
-    [1] coordinate
-    [2] v_x
-    [3] v_y
-    [4] v_z
-    [5] w
-    [6] energy density associated with v_x, v_y and v_z
-    [7] energy density associated with w
++ [1] coordinate
++ [2] v_x
++ [3] v_y
++ [4] v_z
++ [5] w
++ [6] energy density associated with v_x, v_y and v_z
++ [7] energy density associated with w
 
 ##Conditions of iterations interruption:
 To determine moment to interruption of iterations it is naturally to use determination of singular vector:
