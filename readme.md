@@ -2,30 +2,30 @@
 See paper #PAPER for details
 
 ##Project structure:
-+ configs/	                                                            *Configuration files:*
-  +	compile_keys.conf                                        *Contain compilation parameters*
-  + link_keys.conf	                                                *Contain non-numerical parameters of calculation*
-  + params.conf                                                     *Contain numerical parameters of calculation*
++ configs/	                                                             	*Configuration files:*
+  +	compile_keys.conf                                         	*Contain compilation parameters.*
+  + link_keys.conf	                                                 	*Contain non-numerical parameters of calculation.*
+  + params.conf                                                	 	*Contain numerical parameters of calculation.*
 
-+ sourses/                                                              *Sourses files:*
-  + main.cpp													The main project file (uncoment one of five code blocks).
-  + classes.h													Header file with classes description.
-  + methods.cpp												Class methods which are common for all boundary conditions and metric type.
-  + methods_3D.cpp										Class methods for metric coincident with  acoustic energy of perturbations.
-  + methods_first.cpp									Class methods for boundary conditions of first type.
-  + methods_second.cpp								Class methods for boundary conditions of second type.
-  + methods_infinite.cpp								Class methods for infinite flows.
-  + methods_periodic.cpp								Class methods for periodic boundary conditions.
-  + functions.cpp											Functions which are common for all flow types.
-  + functions_homogeneous.cpp					Functions for homogeneous flow.
-  + functions_isothermal.cpp						Functions for isothermal flow.
-  + functions_polytropic.cpp						Functions for politropic flow.
-  + functions.h												Common header for all functions*.cpp files.
-  + procedures.cpp											Some procedures for main.cpp
-  + procedures.h												Header for procedures.cpp
++ sourses/                                                              	*Sourses files:*
+  + main.cpp                                                           	*The main project file (uncoment one of five code blocks).*
+  + classes.h                                                           	*Header file with classes description.*
+  + methods.cpp                                                    	*Class methods which are common for all boundary conditions and metric type.*
+  + methods_3D.cpp                                             	*Class methods for metric coincident with  acoustic energy of perturbations.*
+  + methods_first.cpp                                           	*Class methods for boundary conditions of first type.*
+  + methods_second.cpp                                      	*Class methods for boundary conditions of second type.*
+  + methods_infinite.cpp	                                     	*Class methods for infinite flows.*
+  + methods_periodic.cpp                                    	*Class methods for periodic boundary conditions.*
+  + functions.cpp                                                   	*Functions which are common for all flow types.*
+  + functions_homogeneous.cpp                        	*Functions for homogeneous flow.*
+  + functions_isothermal.cpp                              	*Functions for isothermal flow.*
+  + functions_polytropic.cpp                               	*Functions for politropic flow.*
+  + functions.h                                                       	*Common header for all functions*.cpp files.*
+  + procedures.cpp                                                	*Some procedures for main.cpp*
+  + procedures.h                                                    	*Header for procedures.cpp*
 
-+ Makefile																	Makefile
-+ README																This file
++ Makefile                                                              	*Makefile*
++ README                                                              	*This file*
 
 ##Compilation
 To compile project run 'make' in terminal.
