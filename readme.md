@@ -25,7 +25,7 @@ See paper #PAPER for details
   + procedures.h                                                        *Header for procedures.cpp*
 
 + Makefile                                                                  *Makefile*
-+ README                                                                  *This file*
++ readme.md                                                              *This file*
 
 ##Compilation
 To compile project run 'make' in terminal.
