@@ -523,9 +523,9 @@ void perturbation::kz_max_calc(parameters data, double* kz_max, double* F_kz_max
 	}
 	(*F_kz_max)=(*F_kz_max)/Fv_y_sum;
 
-	for(j=0;j<5;j++)
+	for(j=0;j<10;j++)
 	{
-		fprintf(LOG,"F(kz=%.1lf pi)=%lf\n",j/data.Lz,Fv_y[j]*Fv_y[j]/Fv_y_sum);
+		fprintf(LOG,"F(kz=%.1lf pi)=%.8lf\n",j/data.Lz,Fv_y[j]*Fv_y[j]/Fv_y_sum);
 	}
 
 	free(Fv_y);
@@ -615,6 +615,9 @@ optimal::optimal(parameters data, background bg, optimal* singular_vectors, int 
 		normalisation(data,bg);
 		singular_vectors_subtraction(data,bg,singular_vectors,N);
 		normalisation(data,bg);
+
+		kz_max_calc(data,&kz_max_0,&F_kz_max_0);
+		fprintf(LOG,"kz_max=%lf\tF(kz_max)=%lf\n",kz_max_0,F_kz_max_0);
 //Forward
 		save_vector(data,&vec);
 		end_code=evolve(data,bg,data.Topt,0);
@@ -674,9 +677,6 @@ optimal::optimal(parameters data, background bg, optimal* singular_vectors, int 
 #endif
 
 //		average_subtraction(data);
-		kz_max_calc(data,&kz_max_0,&F_kz_max_0);
-		fprintf(LOG,"kz_max=%lf\tF(kz_max)=%lf\n",kz_max_0,F_kz_max_0);
-
 #if defined(LOGFILENAME)
 		fclose(LOG);
 #endif
@@ -685,6 +685,7 @@ optimal::optimal(parameters data, background bg, optimal* singular_vectors, int 
 #if defined(LOGFILENAME)
 	LOG=fopen(STRINGIZE(LOGFILENAME),"a+t");
 #endif
+	fprintf(LOG,"Spectrum of optimal perturbation at t=0\n");
 	Kz_0=kz_calc(data);
 	kz_max_calc(data,&kz_max_0,&F_kz_max_0);
 	norm_components_calc(data,bg,&Ex_0,&Ey_0,&Ez_0,&Ew_0);
@@ -692,6 +693,7 @@ optimal::optimal(parameters data, background bg, optimal* singular_vectors, int 
 	singular_vectors_subtraction(data,bg,singular_vectors,N);
 	normalisation(data,bg);
 	i=evolve(data,bg,data.Topt,0);
+	fprintf(LOG,"Spectrum of optimal perturbation at t=Topt\n");
 	Kz_T=kz_calc(data);
 	kz_max_calc(data,&kz_max_T,&F_kz_max_T);
 	norm_components_calc(data,bg,&Ex_T,&Ey_T,&Ez_T,&Ew_T);
