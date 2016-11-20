@@ -27,7 +27,7 @@ parameters::parameters(int N_data,char **char_data)
 	struct arg_dbl *q_=arg_dbl0("q","q","<double>","Shear rate. Required: no. Default: 1.5.");
 	struct arg_dbl *mu_=arg_dbl0("q","mu","<double>","Position of initial condition. Required: no. Default: 0.2.");
 	struct arg_dbl *sigma_=arg_dbl0("q","sigma","<double>","Size of initial condition. Required: no. Default: 0.1.");
-	struct arg_int *cores_=arg_int0("c","cores","<int>","Number of openmp threads (0 --- all avalible). Required: no. Default: 0.");
+	struct arg_int *cores_=arg_int0("c","cores","<int>","Number of openmp threads (0 --- all available). Required: no. Default: 0.");
 	struct arg_dbl *cond1_=arg_dbl0("c","cond1","<double>","First conditions of iterations interruption. Required: no. Default: -5.");
 	struct arg_dbl *cond2_=arg_dbl0("c","cond2","<double>","Second conditions of iterations interruption. Required: no. Default: -6.");
 	struct arg_int *cond4_=arg_int0("c","cond4","<int>","Fourth conditions of iterations interruption. Required: no. Default: 500");
@@ -696,7 +696,7 @@ optimal::optimal(parameters data, background bg, optimal* singular_vectors, int 
 	normalisation(data,bg);
 	fprintf(LOG,"Convergence. End code: %d\n",end_code);
 #if defined(LOGFILENAME)
-		fclose(LOG);
+	fclose(LOG);
 #endif
 }
 

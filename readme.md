@@ -45,7 +45,7 @@ To start calculations run 'make task' in terminal.
 ###Non-numerical parameters (configs/link_keys.conf)
 + Choosing of the background flow:
 BACKGROUND={homogeneous, polytropic, isothermal}
-+ Choosing of the metric type (now only one type is avaliable)
++ Choosing of the metric type (now only one type is available)
 METRIC=3D
 + Choosing of the boundary conditions:
 BOUNDARY={first, second, periodic}
@@ -64,7 +64,7 @@ G_OUTPUT={short, full}
 LOG_OUTPUT={stderr, TG_3D.log}
 
 ###Numerical parameters (configs/params.conf)
-For setting numerical parametrs the follwing keys can be used:
+For setting numerical parameters the following keys can be used:
 + Required parameters:
   + --ky, **double**, *Wave-number in y direction*
   + --dz, **double**, *Step of discretization*
@@ -77,7 +77,7 @@ For setting numerical parametrs the follwing keys can be used:
   + --q, **double**, *Shear rate*, default: 1.5
   + --mu, **double**, *Position of initial condition*, default: 0.2
   + --sigma, **double**, *Size of initial condition*, default: 0.1
-  + --cores, **int**, *Number of openmp threads (0 --- all avalible)*, default: 0
+  + --cores, **int**, *Number of openmp threads (0 --- all available)*, default: 0
   + --cond1, **double**, *First conditions of iterations interruption*, default -5
   + --cond2, **double**, *Second conditions of iterations interruption*, default -6
   + --cond4, **int**, *Fourth conditions of iterations interruption*, default 500
@@ -117,7 +117,7 @@ kz_max(t) is wave-number corresponding to maximal F at time t,
 E{x,y,z,w}(t) is energy component associated with {vx, vy, vz, w} in units of full energy of perturbation.
 
 It is also possible to record perturbation profiles by using method "write" for classes "perturbation" and "optimal".
-It records perturabtion in folder "result", file name format "q=%.3lf kx=%.2lf ky=%.2lf t=%.2lf".
+It records perturbation in folder "result", file name format "q=%.3lf kx=%.2lf ky=%.2lf t=%.2lf".
 Format of output:
 + [1] coordinate
 + [2] v_x
@@ -134,7 +134,7 @@ That leads to the first condition:
 ||A^{\dag} A q -\sigma^2 q||^2 / sigma^2 ** 10^{cond1}
 
 Unfortunately sometimes first condition cannot be met with fixed dz and C due to numerical errors of integration.
-Thats way it can be useful to use another criterions.
+That's way it can be useful to use another criterions.
 The second criterion interrupts iterations than changing of value X=||A^{\dag} A q -\sigma^2 q||^2 / sigma^2 become to slow:
 (X_{i-1}-X{i})/X_{i-1}**10^{cond2}
 The third one interrupts iterations when growth factor start decreasing.
