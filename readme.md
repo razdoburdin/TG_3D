@@ -83,7 +83,7 @@ For setting numerical parameters the following keys can be used:
   + --cond4, **int**, *Fourth conditions of iterations interruption*, default 500
 
 ##Output format
-The transient amplification factor is recorded in file "G_$BACKGROUND_$METRIC_$BOUNDARY" in the following format (one lines for one calculation):
+The transient amplification factor is recorded in file "G_$BACKGROUND_$METRIC_$BOUNDARY" in the following format (one lines for one calculation, number in square brackets denote column number):
 + [1] Wave-number in x direction
 + [2] Wave-number in y direction
 + [3] Shear rate
