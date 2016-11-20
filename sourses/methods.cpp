@@ -688,11 +688,16 @@ optimal::optimal(parameters data, background bg, optimal* singular_vectors, int 
 	Kz_0=kz_calc(data);
 	kz_max_calc(data,&kz_max_0,&F_kz_max_0);
 	norm_components_calc(data,bg,&Ex_0,&Ey_0,&Ez_0,&Ew_0);
+	normalisation(data,bg);
+	singular_vectors_subtraction(data,bg,singular_vectors,N);
+	normalisation(data,bg);
 	i=evolve(data,bg,data.Topt,0);
 	Kz_T=kz_calc(data);
 	kz_max_calc(data,&kz_max_T,&F_kz_max_T);
 	norm_components_calc(data,bg,&Ex_T,&Ey_T,&Ez_T,&Ew_T);
 	i=evolve(data,bg,0,0);
+	normalisation(data,bg);
+	singular_vectors_subtraction(data,bg,singular_vectors,N);
 	normalisation(data,bg);
 	fprintf(LOG,"Convergence. End code: %d\n",end_code);
 #if defined(LOGFILENAME)
