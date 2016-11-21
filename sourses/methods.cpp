@@ -485,7 +485,7 @@ void perturbation::spectra_calc(parameters data)
 	fprintf(Spectra,"%lf\t%lf\t%lf\t%lf\t%lf\n",0.0,Fv_x[0],Fv_y[0],Fv_z[0],Fw[0]);
 	for (j=1;j<(data.Z-1)/2;j++)
 	{
-		fprintf(Spectra,"%lf\t%lf\t%lf\t%lf\t%lf\n",2*j*M_PI/data.Lz,Fv_x[j]+Fv_x[j+1],Fv_y[j]+Fv_y[j+1],Fv_z[j]+Fv_z[j+1],Fw[j]+Fw[j+1]);
+		fprintf(Spectra,"%lf\t%lf\t%lf\t%lf\t%lf\n",j*M_PI/data.Lz,Fv_x[j]+Fv_x[j+1],Fv_y[j]+Fv_y[j+1],Fv_z[j]+Fv_z[j+1],Fw[j]+Fw[j+1]);
 	}
 
 	free(Fv_x);
@@ -523,7 +523,7 @@ void perturbation::kz_max_calc(parameters data, double* kz_max, double* F_kz_max
 		Fv_y_sum+=Fv_y[j]*Fv_y[j]+Fv_y[j+1]*Fv_y[j+1];
 		if ((*F_kz_max)<Fv_y[j]*Fv_y[j]+Fv_y[j+1]*Fv_y[j+1])
 		{
-			(*kz_max)=2*j*M_PI/data.Lz;
+			(*kz_max)=j*M_PI/data.Lz;
 			(*F_kz_max)=Fv_y[j]*Fv_y[j]+Fv_y[j+1]*Fv_y[j+1];
 		}
 	}
@@ -531,7 +531,7 @@ void perturbation::kz_max_calc(parameters data, double* kz_max, double* F_kz_max
 
 	for(j=0;j<5;j++)
 	{
-		fprintf(LOG,"F(kz=%.1lf pi)=%.8lf\n",2*j*pow(data.Lz,-1),(Fv_y[j]*Fv_y[j]+Fv_y[j+1]*Fv_y[j+1])/Fv_y_sum);
+		fprintf(LOG,"F(kz=%.1lf pi)=%.8lf\n",j*pow(data.Lz,-1),(Fv_y[j]*Fv_y[j]+Fv_y[j+1]*Fv_y[j+1])/Fv_y_sum);
 	}
 
 	free(Fv_y);
