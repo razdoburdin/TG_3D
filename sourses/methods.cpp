@@ -482,7 +482,7 @@ void perturbation::spectra_calc(parameters data)
 	Spectra=fopen("./result/spectr_real","w+t");
 
 //See gsl manual for understending this part
-	fprintf(Spectra,"%lf\t%lf\t%lf\t%lf\t%lf\n",0,Fv_x[0],Fv_y[0],Fv_z[0],Fw[0]);
+	fprintf(Spectra,"%lf\t%lf\t%lf\t%lf\t%lf\n",0.0,Fv_x[0],Fv_y[0],Fv_z[0],Fw[0]);
 	for (j=1;j<(data.Z-1)/2;j++)
 	{
 		fprintf(Spectra,"%lf\t%lf\t%lf\t%lf\t%lf\n",2*j*M_PI/data.Lz,Fv_x[j]+Fv_x[j+1],Fv_y[j]+Fv_y[j+1],Fv_z[j]+Fv_z[j+1],Fw[j]+Fw[j+1]);
