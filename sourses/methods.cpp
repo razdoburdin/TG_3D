@@ -148,10 +148,11 @@ void perturbation::initial_conditions (parameters data)
 	for(j=0;j<data.Z;j++)
 	{
 		z=coordinate(j,data.dz,data.Lz);
-		Im_v_x[j]=0;
-		Im_v_y[j]=0;
-		Re_v_z[j]=0;
-		Re_w[j]=exp(-pow(z-data.mu,2)*0.5*pow(data.sigma,-2));
+//		Im_v_x[j]=0;
+//		Im_v_y[j]=0;
+		Im_v_y[j]=cos(4*M_PI*z);
+//		Re_v_z[j]=0;
+//		Re_w[j]=exp(-pow(z-data.mu,2)*0.5*pow(data.sigma,-2));
 	}
 
 	t=0;
@@ -479,9 +480,11 @@ void perturbation::spectra_calc(parameters data)
 	FILE* Spectra;
 	Spectra=fopen("./result/spectr_real","w+t");
 
-	for (j=0;j<data.Z-1;j++)
+//See gsl manual for understending this part
+	fprintf(Spectra,"%lf\t%lf\t%lf\t%lf\t%lf\n",0,Fv_x[0],Fv_y[0],Fv_z[0],Fw[0]);
+	for (j=1;j<(data.Z-1)/2;j++)
 	{
-		fprintf(Spectra,"%lf\t%lf\t%lf\t%lf\t%lf\n",M_PI*j/data.Lz,Fv_x[j],Fv_y[j],Fv_z[j],Fw[j]);
+		fprintf(Spectra,"%lf\t%lf\t%lf\t%lf\t%lf\n",2*j*M_PI/data.Lz,Fv_x[j]+Fv_x[j+1],Fv_y[j]+Fv_y[j+1],Fv_z[j]+Fv_z[j+1],Fw[j]+Fw[j+1]);
 	}
 
 	free(Fv_x);
@@ -512,20 +515,22 @@ void perturbation::kz_max_calc(parameters data, double* kz_max, double* F_kz_max
 	double Fv_y_sum=0;
 	(*kz_max)=0;
 	(*F_kz_max)=0;
-	for (j=0;j<data.Z-1;j++)
+//See gsl manual for understending this part
+	Fv_y_sum+=Fv_y[0]*Fv_y[0];
+	for (j=1;j<(data.Z-1)/2;j++)
 	{
-		Fv_y_sum+=Fv_y[j]*Fv_y[j];
-		if ((*F_kz_max)<Fv_y[j]*Fv_y[j])
+		Fv_y_sum+=Fv_y[j]*Fv_y[j]+Fv_y[j+1]*Fv_y[j+1];
+		if ((*F_kz_max)<Fv_y[j]*Fv_y[j]+Fv_y[j+1]*Fv_y[j+1])
 		{
-			(*kz_max)=M_PI*j/data.Lz;
-			(*F_kz_max)=Fv_y[j]*Fv_y[j];
+			(*kz_max)=2*j*M_PI/data.Lz;
+			(*F_kz_max)=Fv_y[j]*Fv_y[j]+Fv_y[j+1]*Fv_y[j+1];
 		}
 	}
 	(*F_kz_max)=(*F_kz_max)/Fv_y_sum;
 
-	for(j=0;j<10;j++)
+	for(j=0;j<5;j++)
 	{
-		fprintf(LOG,"F(kz=%.1lf pi)=%.8lf\n",j/data.Lz,Fv_y[j]*Fv_y[j]/Fv_y_sum);
+		fprintf(LOG,"F(kz=%.1lf pi)=%.8lf\n",2*j*pow(data.Lz,-1),(Fv_y[j]*Fv_y[j]+Fv_y[j+1]*Fv_y[j+1])/Fv_y_sum);
 	}
 
 	free(Fv_y);
@@ -613,6 +618,7 @@ optimal::optimal(parameters data, background bg, optimal* singular_vectors, int 
 
 		fprintf(LOG,"\nIteration %d\n",i+1);
 		normalisation(data,bg);
+//		average_subtraction(data);
 		singular_vectors_subtraction(data,bg,singular_vectors,N);
 		normalisation(data,bg);
 
@@ -676,7 +682,6 @@ optimal::optimal(parameters data, background bg, optimal* singular_vectors, int 
 		}
 #endif
 
-//		average_subtraction(data);
 #if defined(LOGFILENAME)
 		fclose(LOG);
 #endif
