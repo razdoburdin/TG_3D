@@ -148,10 +148,11 @@ void perturbation::initial_conditions (parameters data)
 	for(j=0;j<data.Z;j++)
 	{
 		z=coordinate(j,data.dz,data.Lz);
-//		Im_v_x[j]=0;
-//		Im_v_y[j]=0;
-		Im_v_y[j]=cos(4*M_PI*z);
-//		Re_v_z[j]=0;
+		Im_v_x[j]=0;
+		Im_v_y[j]=0;
+		Im_v_y[j]=exp(-pow(z-data.mu,2)*0.5*pow(data.sigma,-2));
+		Re_v_z[j]=0;
+		Re_w[j]=0;
 //		Re_w[j]=exp(-pow(z-data.mu,2)*0.5*pow(data.sigma,-2));
 	}
 
