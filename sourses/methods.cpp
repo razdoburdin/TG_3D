@@ -524,7 +524,7 @@ void perturbation::kz_max_calc(parameters data, double* kz_max, double* F_kz_max
 		Fv_y_sum+=Fv_y[j]*Fv_y[j]+Fv_y[j+1]*Fv_y[j+1];
 		if ((*F_kz_max)<Fv_y[j]*Fv_y[j]+Fv_y[j+1]*Fv_y[j+1])
 		{
-			(*kz_max)=j*M_PI/data.Lz;
+			(*kz_max)=(j+1)/2*M_PI/data.Lz;
 			(*F_kz_max)=Fv_y[j]*Fv_y[j]+Fv_y[j+1]*Fv_y[j+1];
 		}
 	}
