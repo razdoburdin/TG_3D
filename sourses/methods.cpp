@@ -150,8 +150,8 @@ void perturbation::initial_conditions (parameters data)
 		z=coordinate(j,data.dz,data.Lz);
 		Im_v_x[j]=0;
 		Im_v_y[j]=0;
-		Im_v_y[j]=exp(-pow(z-data.mu,2)*0.5*pow(data.sigma,-2));
-//		Im_v_y[j]=cos(10*M_PI*z);
+//		Im_v_y[j]=exp(-pow(z-data.mu,2)*0.5*pow(data.sigma,-2));
+		Im_v_y[j]=cos(10*M_PI*z);
 		Re_v_z[j]=0;
 		Re_w[j]=0;
 //		Re_w[j]=exp(-pow(z-data.mu,2)*0.5*pow(data.sigma,-2));
@@ -316,12 +316,12 @@ double perturbation::norm (parameters data, background bg)
 	return Iv+Iw;
 }
 
-void perturbation::norm_evolve (parameters data, background bg,double t_end,double dT)
+void perturbation::norm_evolve (parameters data, background bg, double t_end, double dT)
 {
 	struct timeval time_start,time_end;
 	char* time;
 	gettimeofday(&time_start,NULL);
-	fprintf(stderr,"\nСчитаем g(t): ");
+	fprintf(stderr,"\nСalculation g(t): ");
 	
 	chek_result_floder();
 	FILE* output;
@@ -358,7 +358,56 @@ void perturbation::norm_evolve (parameters data, background bg,double t_end,doub
 
 	gettimeofday(&time_end,NULL);
 	timeformat(time_start,time_end,&time);
-	fprintf(stderr,"\tуспешно (%s)\n",time);
+	fprintf(stderr,"\tdone (%s)\n",time);
+	delete[] time;
+}
+
+void perturbation::gEz_evolve (parameters data, background bg, double t_end, double dT)
+{
+	struct timeval time_start,time_end;
+	char* time;
+	gettimeofday(&time_start,NULL);
+	fprintf(stderr,"\nСalculating g(t)Ez(t): ");
+	
+	chek_result_floder();
+	FILE* output;
+	char* name;
+	name=new char[30];
+
+	double Ex,Ey,Ez,Ew,N;
+	sprintf(name,"./result/g*Ez(t) t=(%.1lf,%.1lf)",t,t_end);
+	output=fopen(name,"w+t");
+
+	int persent=0;
+	double t_start=t;
+	fprintf(stderr,"\t\t\t");
+	progress(persent);
+
+	while (t<t_end)
+	{
+		norm_components_calc(data,bg,&Ex,&Ey,&Ez,&Ew,&N);
+		fprintf(output,"%lf\t%lf\t%lf\n",t,N*Ez,N);
+		evolve(data,bg,t+dT,1);
+
+//Changing percent value
+		if ((t-t_start)/(t_end-t_start)>(persent+1)*0.01)
+		{
+			while ((t-t_start)/(t_end-t_start)>(persent+1)*0.01)
+			{
+				persent++;
+			}
+			progress(persent);
+		}
+	}
+	norm_components_calc(data,bg,&Ex,&Ey,&Ez,&Ew,&N);
+	fprintf(output,"%lf\t%lf\t%lf\n",t,N*Ez,N);
+
+	fclose(output);
+	delete[] name;
+
+	gettimeofday(&time_end,NULL);
+	timeformat(time_start,time_end,&time);
+	fprintf(stderr,"\tdone (%s)\n",time);
 	delete[] time;
 }
 
@@ -539,7 +588,7 @@ void perturbation::kz_max_calc(parameters data, double* kz_max, double* F_kz_max
 	free(Fv_y);
 }
 
-void perturbation::norm_components_calc(parameters data,  background bg, double* Ex, double* Ey, double* Ez, double* Ew)
+void perturbation::norm_components_calc(parameters data,  background bg, double* Ex, double* Ey, double* Ez, double* Ew,double* N)
 {
 //Using of the trapezoidal rule to calculate integral. Because of the grid offset integral is divided into two parts.
 	int j;
@@ -560,10 +609,12 @@ void perturbation::norm_components_calc(parameters data,  background bg, double*
 	{
 		Iw+=data.dz*i_w(data,bg,j);
 	}
-	(*Ex)=Iv_x/(Iv_x+Iv_y+Iv_z+Iw);
-	(*Ey)=Iv_y/(Iv_x+Iv_y+Iv_z+Iw);
-	(*Ez)=Iv_z/(Iv_x+Iv_y+Iv_z+Iw);
-	(*Ew)=Iw/(Iv_x+Iv_y+Iv_z+Iw);
+
+	(*N)=Iv_x+Iv_y+Iv_z+Iw;
+	(*Ex)=Iv_x/(*N);
+	(*Ey)=Iv_y/(*N);
+	(*Ez)=Iv_z/(*N);
+	(*Ew)=Iw/(*N);
 }
 
 void perturbation::average_subtraction(parameters data)
@@ -590,6 +641,56 @@ void perturbation::average_subtraction(parameters data)
 		Re_w[j]-=W_av;
 	}
 	Re_w[data.Z-1]-=W_av;
+}
+
+double perturbation::momentum_flux(parameters data, background bg)
+{
+//Using of the trapezoidal rule to calculate integral
+	int j;
+	double f;
+
+	f=data.dz/2*(bg.rho_0_v[0]*Im_v_x[0]*Im_v_y[0]+bg.rho_0_v[data.Z-2]*Im_v_x[data.Z-2]*Im_v_y[data.Z-2]);
+	for(j=1;j<data.Z-2;j++)
+	{
+		f+=data.dz*bg.rho_0_v[j]*Im_v_x[j]*Im_v_y[j];
+	}
+
+	return f;
+}
+
+double perturbation::full_momentum_flux(parameters data, background bg, double t_end,double dT)
+{
+//Using of the trapezoidal rule to calculate integral
+	int persent=0;
+	double f,t_start;
+
+	fprintf(stderr,"\nFlux calculation:\t\t\t");
+
+	t_start=t;
+	f=dT/2*momentum_flux(data,bg);
+//	fprintf(stderr,"t=%lf\tf=%lf\tf+=%lf\n",t,f,dT/2*momentum_flux(data,bg));
+	while (t<t_end-dT)
+	{
+		evolve(data,bg,t+dT,1);
+		f+=dT*momentum_flux(data,bg);
+//		fprintf(stderr,"t=%lf\tf=%lf\tf+=%lf\n",t,f,dT*momentum_flux(data,bg));
+//Changing percent value
+		if ((t-t_start)/(t_end-t_start)>(persent+1)*0.01)
+		{
+			while ((t-t_start)/(t_end-t_start)>(persent+1)*0.01)
+			{
+				persent++;
+			}
+			progress(persent);
+		}
+	}
+	evolve(data,bg,t+dT,1);
+	f+=dT/2*momentum_flux(data,bg);
+//	fprintf(stderr,"t=%lf\tf=%lf\tf+=%lf\n",t,f,dT/2*momentum_flux(data,bg));
+
+	progress(100);
+	fprintf(stderr,"\tdone\n");
+	return f;
 }
 
 optimal::optimal(parameters data, background bg, optimal* singular_vectors, int N) : perturbation (data,bg,0.0)
@@ -693,10 +794,11 @@ optimal::optimal(parameters data, background bg, optimal* singular_vectors, int 
 #if defined(LOGFILENAME)
 	LOG=fopen(STRINGIZE(LOGFILENAME),"a+t");
 #endif
+	double Norm;
 	fprintf(LOG,"Spectrum of optimal perturbation at t=0\n");
 	Kz_0=kz_calc(data);
 	kz_max_calc(data,&kz_max_0,&F_kz_max_0);
-	norm_components_calc(data,bg,&Ex_0,&Ey_0,&Ez_0,&Ew_0);
+	norm_components_calc(data,bg,&Ex_0,&Ey_0,&Ez_0,&Ew_0,&Norm);
 	normalisation(data,bg);
 	singular_vectors_subtraction(data,bg,singular_vectors,N);
 	normalisation(data,bg);
@@ -704,7 +806,7 @@ optimal::optimal(parameters data, background bg, optimal* singular_vectors, int 
 	fprintf(LOG,"Spectrum of optimal perturbation at t=Topt\n");
 	Kz_T=kz_calc(data);
 	kz_max_calc(data,&kz_max_T,&F_kz_max_T);
-	norm_components_calc(data,bg,&Ex_T,&Ey_T,&Ez_T,&Ew_T);
+	norm_components_calc(data,bg,&Ex_T,&Ey_T,&Ez_T,&Ew_T,&Norm);
 	i=evolve(data,bg,0,0);
 	normalisation(data,bg);
 	singular_vectors_subtraction(data,bg,singular_vectors,N);

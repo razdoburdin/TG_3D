@@ -1,4 +1,6 @@
 #include "classes.h"
+#include <stdio.h>
+#include <math.h>
 
 double coordinate(double j, double dz, double Lz);
 

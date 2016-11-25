@@ -1,0 +1,9 @@
+result/*
+objects/*
+TG_3D
+TG_3D.log
+.gitignore*
+Script
+G_*
+3D\ fig*
+*rus*

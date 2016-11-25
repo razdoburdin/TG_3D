@@ -1,5 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <vector>
-#include <algorithm>
+#include <math.h>
 
 class parameters
 {
@@ -92,6 +94,8 @@ public:
 		
 	void norm_evolve (parameters, background, double, double);
 
+	void gEz_evolve (parameters, background, double, double);
+
 	void normalisation(parameters,background);
 
 	void amplitude_unification(parameters,background);
@@ -100,11 +104,15 @@ public:
 
 	void kz_max_calc(parameters, double*, double*);
 
-	void norm_components_calc(parameters,  background, double*, double*, double*, double*);
+	void norm_components_calc(parameters,  background, double*, double*, double*, double*, double*);
 
 	void spectra_calc(parameters);
 
 	void average_subtraction(parameters);
+
+	double momentum_flux(parameters, background);
+
+	double full_momentum_flux(parameters, background, double, double);
 };
 
 class optimal : public perturbation

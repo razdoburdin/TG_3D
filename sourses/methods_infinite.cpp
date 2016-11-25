@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <math.h>
-
 #include "functions.h"
 int perturbation::boundary(parameters data, background bg)
 {

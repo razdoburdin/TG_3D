@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-
 #include "classes.h"
 #include "procedures.h"
 
@@ -20,11 +16,11 @@ int main(int N_data, char** char_data)
 //	vec.write(data,bg);
 //	end_code=vec.evolve(data,bg,0,0);
 //	vec.write(data);
-
+	
 //2. Calculating of N singular values.
 	optimal* singular_vectors;
 	int j;
-	int N=5;
+	int N=1;
 	singular_vectors=(optimal*) malloc (N*sizeof(optimal));
 	for(j=0;j<N;j++)
 	{
