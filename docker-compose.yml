@@ -1,0 +1,8 @@
+version: '2'
+services:
+   tg:
+     build: .
+     volumes:
+       - .:/tg
+     env_file:
+       - ./configs/params.conf
