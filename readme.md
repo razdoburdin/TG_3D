@@ -36,7 +36,8 @@ You need to have the following:
 + gnu scientific library (gsl)
 + argtable
 
-(Note that code was tested only for gcc)
+(Note that code was tested only for gcc in bouth Linux and Mac).
+(If you have gcc<4.9, you need to set "VECTORIZE=no" in configs/link_keys.conf).
 
 ##Running the code
 To start calculations run 'make task' in terminal.
