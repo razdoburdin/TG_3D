@@ -1,6 +1,6 @@
 Copyright 2016 Dmitry N. Razdoburdin.
 
-This file is part of TG_3D. TG_3D is a program that calculatstransient growth of linear perturbations in 3D shearing box by power iterations.
+This file is part of TG_3D. TG_3D is a program that calculats transient growth of linear perturbations in 3D shearing box by power iterations.
 
 TG_3D is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 TG_3D is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
