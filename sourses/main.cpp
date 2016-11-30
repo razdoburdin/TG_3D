@@ -23,7 +23,22 @@ int main(int N_data, char** char_data)
 //	end_code=vec.evolve(data,bg,0,0);
 //	vec.write(data);
 
-//2. Calculating of N singular values.
+//2. Evolution of normalised initial condition forward in time with writing full norm and its vertical component to the "result" folder.
+//	double Ex,Ey,Ez,Ew,Norm;
+//	perturbation vec(data,bg,0);
+//	vec.initial_conditions(data);
+//	vec.normalisation(data,bg);
+//	vec.gEz_evolve(data,bg,100,0.1);
+//	vec.norm_components_calc(data,bg,&Ex,&Ey,&Ez,&Ew,&Norm);
+//	fprintf(stderr,"Ex=%lf\tEy=%lf\tEz=%lf\tEw=%lf\tNorm=%lf\n",Ex,Ey,Ez,Ew,Norm);
+
+//3. Calculation of integrated over time momentum flux through the box.
+//	perturbation vec(data,bg,0);
+//	vec.initial_conditions(data);
+//	vec.normalisation(data,bg);
+//	fprintf(stderr,"Flux=%lf\n",vec.full_momentum_flux(data,bg,200,0.1));
+	
+//4. Calculating of N singular values.
 	optimal* singular_vectors;
 	int j;
 	int N=1;
@@ -34,18 +49,12 @@ int main(int N_data, char** char_data)
 		singular_vectors[j].write_G(data,bg,j+1);
 	}
 
-//3. Calculating of G as function of kx.
+//5. Calculating of G as function of kx.
 //	double kx_min=-25*data.ky;
 //	double kx_max=10*data.ky;
 //	G_kx(data,bg,kx_min,kx_max,0.5*data.ky);
 
-//4. Calculating G_max by using analytical expression for T_max. Not tested yet.
-//	double Re_05=2000;
-//	data.Topt=pow(Re_05,1.0/3.0)*pow(data.ky*0.5,-2.0/3.0)/data.q;
-//	data.kx=-data.ky*data.q*data.Topt;
-//	fprintf(stderr,"Topt=%.2lf\tkx=%.2lf\tbeta=%.1lf\n",data.Topt,data.kx,data.kx/data.ky);
-
-//5. Calculating maximal G over all kx. Not tested yet.
+//6. Calculating maximal G over all kx.
 //	G_T G(data, bg);
 //	G.write(data,bg);
 

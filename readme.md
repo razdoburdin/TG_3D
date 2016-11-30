@@ -18,7 +18,7 @@ See paper #PAPER for details
   + params.conf                                                         *Contains numerical parameters of calculation.*
 
 + sourses/                                                                  *Sourses files:*
-  + main.cpp                                                               *The main project file (uncoment one of five code blocks).*
+  + main.cpp                                                               *The main project file (uncoment one of code blocks).*
   + classes.h                                                               *Header file with classes description.*
   + methods.cpp                                                        *Class methods which are common for all boundary conditions and metric type.*
   + methods_3D.cpp                                                 *Class methods for metric coincident with  acoustic energy of perturbations.*
