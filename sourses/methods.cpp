@@ -1,3 +1,9 @@
+//Copyright 2016 Dmitry N. Razdoburdin.
+//
+//This file is part of TG_3D. TG_3D is a program that calculats transient growth of linear perturbations in 3D shearing box by power iterations.
+//
+//TG_3D is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. TG_3D is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with TG_3D. If not, see <http://www.gnu.org/licenses/>.
+
 #define STRINGIZE_NX(A) #A
 #define STRINGIZE(A) STRINGIZE_NX(A)
 
@@ -151,7 +157,7 @@ void perturbation::initial_conditions (parameters data)
 		Im_v_x[j]=0;
 		Im_v_y[j]=0;
 //		Im_v_y[j]=exp(-pow(z-data.mu,2)*0.5*pow(data.sigma,-2));
-		Im_v_y[j]=cos(10*M_PI*z);
+		Im_v_y[j]=cos(1*M_PI*z);
 		Re_v_z[j]=0;
 		Re_w[j]=0;
 //		Re_w[j]=exp(-pow(z-data.mu,2)*0.5*pow(data.sigma,-2));
@@ -388,6 +394,7 @@ void perturbation::gEz_evolve (parameters data, background bg, double t_end, dou
 		norm_components_calc(data,bg,&Ex,&Ey,&Ez,&Ew,&N);
 		fprintf(output,"%lf\t%lf\t%lf\n",t,N*Ez,N);
 		evolve(data,bg,t+dT,1);
+		write(data,bg);
 
 //Changing percent value
 		if ((t-t_start)/(t_end-t_start)>(persent+1)*0.01)
